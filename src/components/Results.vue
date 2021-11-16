@@ -16,15 +16,16 @@
 
 <script>
 export default {
-  props: ['currentScore'],
   data() {
     return {
-      scores: []
+      scores: [],
+      currentScore: null
     }
   },
   mounted() {},
   methods: {
     updateScores(currentTime) {
+        this.currentScore = currentTime
       if (this.scores.length < 3) {
         this.scores.push(currentTime)
         this.scores.sort(function (a, b) {

@@ -2,7 +2,7 @@
   <h1>Garwalle Reaction Timer</h1>
   <button @click="start" :disabled="isPlaying">Play</button>
   <Block v-if="isPlaying" :delay="delay" @end="endGame" />
-  <Results :currentScore="score" ref="updateScores" />
+  <Results ref="updateScores" />
 </template>
 
 <script>
