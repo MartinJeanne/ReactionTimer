@@ -1,5 +1,5 @@
 # reaction-timer
-Test your reflex by cliking as fast as you can on the screen when the website tells you !
+Test your reflex by clicking as fast as you can on the screen when the website tells you !
 
 
 ## Download
