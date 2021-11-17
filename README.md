@@ -1,19 +1,18 @@
 # reaction-timer
+Test your reflex by cliking as fast as you can on the screen when the website tells you !
 
-## Project setup
+
+## Download
+```
+git clone https://github.com/MartinJeanne/ReactionTimer
+```
+
+## Install dependencies
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Run in local
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
