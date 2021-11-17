@@ -1,5 +1,6 @@
 <template>
   <div class="block" v-if="showBlock" @click="stopTimer"><p>Click me</p></div>
+  <div class="anticheat" v-if="!showBlock" @click="cheat"></div>
 </template>
 
 <script>
@@ -27,6 +28,9 @@ export default {
     stopTimer() {
       clearInterval(this.timer)
       this.$emit('end', this.reactionTime)
+    },
+    cheat() {
+      this.$emit('end', -1)
     }
   }
 }
@@ -45,5 +49,13 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.anticheat {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 }
 </style>

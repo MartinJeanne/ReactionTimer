@@ -7,7 +7,7 @@
       <p>Your best scores:</p>
       <ul>
         <li v-for="(score, index) in scores" :key="score">
-          {{ index + 1 }}. {{ score }}
+          {{ index + 1 }}. {{ score }}ms
         </li>
       </ul>
     </div>

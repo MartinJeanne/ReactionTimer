@@ -21,12 +21,17 @@ export default {
   },
   methods: {
     start() {
-      this.delay = 0 + Math.random() * 5000
+      this.delay = 1000 + Math.random() * 5000
       this.isPlaying = true
     },
     endGame(reactionTime) {
-      this.scores.push(reactionTime)
-      this.isPlaying = false
+      if ((reactionTime == -1)) {
+        this.isPlaying = false
+        alert('Please, wait for the green to appear before clicking !')
+      } else {
+        this.isPlaying = false
+        this.scores.push(reactionTime)
+      }
     }
   }
 }
