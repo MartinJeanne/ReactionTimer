@@ -1,15 +1,15 @@
 <template>
-  <div id="score">
-    <p id="cureentScore">
-      You score: <b>{{ currentScore }}ms</b>
+  <div id="score" v-if="currentScore">
+    <p id="currentScore">
+      Your score: <b>{{ currentScore }}ms</b>
     </p>
-    <div>
+    <div id="bestScores">
       <p>Your best scores:</p>
-      <ol>
-        <li v-for="score in scores" :key="score">
-          {{ score }}
+      <ul>
+        <li v-for="(score, index) in scores" :key="score">
+          {{ index + 1 }}. {{ score }}
         </li>
-      </ol>
+      </ul>
     </div>
   </div>
 </template>
@@ -21,7 +21,6 @@ export default {
   },
   data() {
     return {
-      data: [],
       currentScore: null
     }
   },
@@ -47,11 +46,36 @@ p {
   display: inline-block;
 }
 
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 #score {
-  width: 20vw;
-  height: 20vh;
+  width: 30vw;
   margin: 10vh auto;
   background-color: rgb(77, 82, 80);
+  padding: 0 0.8vw 1vw 0.8vw;
   border-radius: 2vh;
+}
+
+#currentScore {
+  margin: 1.3vw;
+  font-size: 3vw;
+}
+
+#currentScore b {
+  color: rgb(255, 181, 196);
+}
+
+#bestScores p {
+  font-size: 1.8vw;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+#bestScores li {
+  font-size: 1.8vw;
+  margin-top: 1vw;
 }
 </style>
