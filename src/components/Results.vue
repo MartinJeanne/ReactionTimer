@@ -25,22 +25,19 @@ export default {
       currentScore: null
     }
   },
-  mounted() {
-    console.log('Mounted')
-    this.scores
-    this.currentScore = this.scores[this.scores.length - 1]
-    /*if (this.scores.length < 3) {
+  methods: {
+    sortScore() {
       this.scores.sort(function (a, b) {
         return a - b
       })
-    } else {
-      for (let i = 0; i < this.scores.length; i++) {
-        if (currentTime < this.scores[i]) {
-          this.scores[i] = currentTime
-          return
-        }
-      }
-    }*/
+      this.scores.forEach((score, index) => {
+        if (index > 2) this.scores.splice(index, 1)
+      })
+    }
+  },
+  mounted() {
+    this.currentScore = this.scores[this.scores.length - 1]
+    this.sortScore()
   }
 }
 </script>
