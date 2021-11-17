@@ -16,30 +16,31 @@
 
 <script>
 export default {
+  props: {
+    scores: Array
+  },
   data() {
     return {
-      scores: [],
+      data: [],
       currentScore: null
     }
   },
-  mounted() {},
-  methods: {
-    updateScores(currentTime) {
-        this.currentScore = currentTime
-      if (this.scores.length < 3) {
-        this.scores.push(currentTime)
-        this.scores.sort(function (a, b) {
-          return a - b
-        })
-      } else {
-        for (let i = 0; i < this.scores.length; i++) {
-          if (currentTime < this.scores[i]) {
-            this.scores[i] = currentTime
-            return
-          }
+  mounted() {
+    console.log('Mounted')
+    this.scores
+    this.currentScore = this.scores[this.scores.length - 1]
+    /*if (this.scores.length < 3) {
+      this.scores.sort(function (a, b) {
+        return a - b
+      })
+    } else {
+      for (let i = 0; i < this.scores.length; i++) {
+        if (currentTime < this.scores[i]) {
+          this.scores[i] = currentTime
+          return
         }
       }
-    }
+    }*/
   }
 }
 </script>

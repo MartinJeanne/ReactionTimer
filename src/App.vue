@@ -2,7 +2,7 @@
   <h1>Garwalle Reaction Timer</h1>
   <button @click="start" :disabled="isPlaying">Play</button>
   <Block v-if="isPlaying" :delay="delay" @end="endGame" />
-  <Results ref="updateScores" />
+  <Results v-if="!isPlaying" :scores="scores" />
 </template>
 
 <script>
@@ -16,18 +16,17 @@ export default {
     return {
       isPlaying: false,
       delay: null,
-      score: null
+      scores: []
     }
   },
   methods: {
     start() {
       this.delay = 0 + Math.random() * 5000
       this.isPlaying = true
-      this.score = null
     },
     endGame(reactionTime) {
+      this.scores.push(reactionTime)
       this.isPlaying = false
-      this.$refs.updateScores.updateScores(reactionTime)
     }
   }
 }
