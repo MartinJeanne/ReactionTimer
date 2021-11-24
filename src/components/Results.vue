@@ -3,6 +3,7 @@
     <p id="currentScore">
       Your score: <b>{{ currentScore }}ms</b>
     </p>
+    <p id="currentRole">Your are {{ currentRole }}</p>
     <div id="bestScores">
       <p>Your best scores:</p>
       <ul>
@@ -21,7 +22,8 @@ export default {
   },
   data() {
     return {
-      currentScore: null
+      currentScore: null,
+      currentRole: ''
     }
   },
   methods: {
@@ -37,6 +39,17 @@ export default {
   mounted() {
     this.currentScore = this.scores[this.scores.length - 1]
     this.sortScore()
+    if (this.currentScore < 200) {
+      this.currentRole = 'flash  !!'
+    } else if (this.currentScore < 250) {
+      this.currentRole = 'a ninja !'
+    } else if (this.currentScore < 300) {
+      this.currentRole = 'quite fast'
+    } else if (this.currentScore < 350) {
+      this.currentRole = 'quite slow'
+    } else {
+      this.currentRole = 'a turtle'
+    }
   }
 }
 </script>
@@ -61,12 +74,20 @@ ul {
 }
 
 #currentScore {
-  margin: 1.3vw;
+  margin: 0;
+  padding-top: 1.3vw;
   font-size: 3vw;
 }
 
 #currentScore b {
   color: rgb(255, 181, 196);
+}
+
+#currentRole {
+  margin: 1vw 0 3vw 0;
+  font-size: 2vw;
+  color: rgb(255, 181, 196);
+  font-style: italic;
 }
 
 #bestScores p {

@@ -25,12 +25,14 @@ export default {
       this.isPlaying = true
     },
     endGame(reactionTime) {
-      if ((reactionTime == -1)) {
+      if (reactionTime == -1) {
         this.isPlaying = false
         alert('Please, wait for the green to appear before clicking !')
       } else {
         this.isPlaying = false
-        this.scores.push(reactionTime)
+        if (!this.scores.includes(reactionTime)) {
+          this.scores.push(reactionTime)
+        }
       }
     }
   }
