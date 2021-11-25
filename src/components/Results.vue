@@ -16,40 +16,49 @@
 </template>
 
 <script>
+import { ref } from '@vue/reactivity'
+import { onMounted } from '@vue/runtime-core'
+import getRecord from '../composables/getRecord'
+
 export default {
   props: {
     scores: Array
   },
-  data() {
-    return {
-      currentScore: null,
-      currentRole: ''
-    }
-  },
-  methods: {
-    sortScore() {
-      this.scores.sort(function (a, b) {
+  setup(props) {
+    const currentScore = ref(null)
+    const currentRole = ref('')
+
+    const { record, load } = getRecord()
+    load()
+
+
+    function sortScore() {
+      props.scores.sort(function (a, b) {
         return a - b
       })
-      this.scores.forEach((score, index) => {
-        if (index > 2) this.scores.splice(index, 1)
+      props.scores.forEach((score, index) => {
+        if (index > 2) props.scores.splice(index, 1)
       })
     }
-  },
-  mounted() {
-    this.currentScore = this.scores[this.scores.length - 1]
-    this.sortScore()
-    if (this.currentScore < 200) {
-      this.currentRole = 'flash  !!'
-    } else if (this.currentScore < 250) {
-      this.currentRole = 'a ninja !'
-    } else if (this.currentScore < 300) {
-      this.currentRole = 'quite fast'
-    } else if (this.currentScore < 350) {
-      this.currentRole = 'quite slow'
-    } else {
-      this.currentRole = 'a turtle'
-    }
+
+    onMounted(() => {
+      console.log('mounted!')
+      currentScore.value = props.scores[props.scores.length - 1]
+      sortScore()
+      if (currentScore.value < 200) {
+        currentRole.value = 'flash  !!'
+      } else if (currentScore < 250) {
+        currentRole.value = 'a ninja !'
+      } else if (currentScore < 300) {
+        currentRole.value = 'quite fast'
+      } else if (currentScore < 350) {
+        currentRole.value = 'quite slow'
+      } else {
+        currentRole.value = 'a turtle'
+      }
+    })
+
+    return { currentScore, currentRole, sortScore }
   }
 }
 </script>
