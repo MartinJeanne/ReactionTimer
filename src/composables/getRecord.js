@@ -7,7 +7,9 @@ function getRecord() {
     async function load() {
         try {
             const res = await projectFirestore.collection('record').get()
-            console.log(res)
+            record.value = res.docs.map(doc => {
+                return { ...doc.data(), id: doc.id }
+            })
         } catch (err) {
             console.log(err)
         }
