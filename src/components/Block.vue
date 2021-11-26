@@ -6,6 +6,7 @@
 <script>
 export default {
   props: ['delay'],
+  emits: ['end'],
   data() {
     return {
       showBlock: false,

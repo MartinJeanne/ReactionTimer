@@ -11,6 +11,7 @@
           {{ index + 1 }}. {{ score }}ms
         </li>
       </ul>
+      <button @click="saveBestScore">Save you best score</button>
       <br /><br />
       <p>Global best scores:</p>
       <ul>
@@ -48,7 +49,7 @@ export default {
       })
     }
 
-    async function saveCurrentScore() {
+    async function saveBestScore() {
       const res = await projectFirestore
         .collection('record')
         .add({ name: 'Tinin', time: currentScore.value })
@@ -56,7 +57,6 @@ export default {
 
     onMounted(() => {
       currentScore.value = props.scores[props.scores.length - 1]
-      console.log(currentScore.value)
       sortScore()
       if (currentScore.value < 200) {
         currentRole.value = 'flash  !!'
@@ -72,7 +72,7 @@ export default {
       //saveCurrentScore()
     })
 
-    return { currentScore, currentRole, sortScore, record }
+    return { currentScore, currentRole, sortScore, record, saveBestScore }
   }
 }
 </script>

@@ -6,35 +6,35 @@
 </template>
 
 <script>
+import { ref } from '@vue/reactivity'
 import Block from './components/Block'
 import Results from './components/Results'
 
 export default {
-  name: 'App',
   components: { Block, Results },
-  data() {
-    return {
-      isPlaying: false,
-      delay: null,
-      scores: []
+  setup() {
+    const isPlaying = ref(false)
+    const delay = ref(null)
+    const scores = ref([])
+
+    function start() {
+      delay.value = 1000 + Math.random() * 5000
+      isPlaying.value = true
     }
-  },
-  methods: {
-    start() {
-      this.delay = 1000 + Math.random() * 5000
-      this.isPlaying = true
-    },
-    endGame(reactionTime) {
+
+    function endGame(reactionTime) {
       if (reactionTime == -1) {
-        this.isPlaying = false
-        alert('Please, wait for the green to appear before clicking !')
+        isPlaying.value = false
+        alert('Please, wait for the green screen to appear before clicking !')
       } else {
-        this.isPlaying = false
-        if (!this.scores.includes(reactionTime)) {
-          this.scores.push(reactionTime)
+        isPlaying.value = false
+        if (!scores.value.includes(reactionTime)) {
+          scores.value.push(reactionTime)
         }
       }
     }
+
+    return { isPlaying, delay, scores, start, endGame }
   }
 }
 </script>
