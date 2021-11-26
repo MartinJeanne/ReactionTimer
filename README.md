@@ -16,3 +16,8 @@ npm install
 ```
 npm run serve
 ```
+
+## to run you need vue cli
+```
+npm install -g @vue/cli
+```
