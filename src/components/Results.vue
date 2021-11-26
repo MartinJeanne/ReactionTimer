@@ -15,7 +15,7 @@
       <p>Global best scores:</p>
       <ul>
         <li v-for="(r, index) in record" :key="r.id">
-          {{ index + 1 }}.{{ r.name }}: {{ r.time }}ms
+          {{ index + 1 }}. {{ r.name }}: {{ r.time }}ms
         </li>
       </ul>
     </div>
@@ -60,11 +60,11 @@ export default {
       sortScore()
       if (currentScore.value < 200) {
         currentRole.value = 'flash  !!'
-      } else if (currentScore.value < 250  ) {
+      } else if (currentScore.value < 250) {
         currentRole.value = 'a ninja !'
-      } else if (currentScore.value < 300  ) {
+      } else if (currentScore.value < 300) {
         currentRole.value = 'quit fast'
-      } else if (currentScore.value < 350  ) {
+      } else if (currentScore.value < 350) {
         currentRole.value = 'quit slow'
       } else {
         currentRole.value = 'slow'
