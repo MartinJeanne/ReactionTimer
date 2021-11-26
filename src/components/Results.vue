@@ -11,6 +11,13 @@
           {{ index + 1 }}. {{ score }}ms
         </li>
       </ul>
+      <br /><br />
+      <p>Global best scores:</p>
+      <ul>
+        <li v-for="(r, index) in record" :key="r.id">
+          {{ index + 1 }}.{{ r.name }}: {{ r.time }}ms
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -19,6 +26,7 @@
 import { ref } from '@vue/reactivity'
 import { onMounted } from '@vue/runtime-core'
 import getRecord from '../composables/getRecord'
+import { projectFirestore } from '../firebase/config'
 
 export default {
   props: {
@@ -31,7 +39,6 @@ export default {
     const { record, load } = getRecord()
     load()
 
-
     function sortScore() {
       props.scores.sort(function (a, b) {
         return a - b
@@ -41,24 +48,31 @@ export default {
       })
     }
 
+    async function saveCurrentScore() {
+      const res = await projectFirestore
+        .collection('record')
+        .add({ name: 'Tinin', time: currentScore.value })
+    }
+
     onMounted(() => {
-      console.log('mounted!')
       currentScore.value = props.scores[props.scores.length - 1]
+      console.log(currentScore.value)
       sortScore()
       if (currentScore.value < 200) {
         currentRole.value = 'flash  !!'
-      } else if (currentScore < 250) {
+      } else if (currentScore.value < 250  ) {
         currentRole.value = 'a ninja !'
-      } else if (currentScore < 300) {
-        currentRole.value = 'quite fast'
-      } else if (currentScore < 350) {
-        currentRole.value = 'quite slow'
+      } else if (currentScore.value < 300  ) {
+        currentRole.value = 'quit fast'
+      } else if (currentScore.value < 350  ) {
+        currentRole.value = 'quit slow'
       } else {
-        currentRole.value = 'a turtle'
+        currentRole.value = 'slow'
       }
+      //saveCurrentScore()
     })
 
-    return { currentScore, currentRole, sortScore }
+    return { currentScore, currentRole, sortScore, record }
   }
 }
 </script>

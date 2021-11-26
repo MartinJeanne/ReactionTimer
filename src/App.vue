@@ -2,7 +2,7 @@
   <h1>Martin Reaction Timer</h1>
   <button @click="start" :disabled="isPlaying">Play</button>
   <Block v-if="isPlaying" :delay="delay" @end="endGame" />
-  <Results v-if="!isPlaying" :scores="scores" />
+  <Results v-if="!isPlaying && scores.length" :scores="scores" />
 </template>
 
 <script>
