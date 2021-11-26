@@ -12,12 +12,14 @@ git clone https://github.com/MartinJeanne/ReactionTimer
 npm install
 ```
 
+
+Before running server, you will need vue cli, to install it locally you can do
+```
+npm install @vue/cli
+```
+
+
 ### Run in local
 ```
 npm run serve
-```
-
-## to run you need vue cli
-```
-npm install -g @vue/cli
 ```
