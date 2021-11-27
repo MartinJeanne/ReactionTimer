@@ -1,14 +1,14 @@
 <template>
-  <div class="modal">
+  <div class="modal" @click.self="closeModal">
     <div class="modalContent">
       <form>
         <div class="flexFormEl">
-          <label>Your name:</label>
+          <label>Your name</label>
           <input v-model="name" class="name" type="text" />
         </div>
 
         <div class="flexFormEl">
-          <label>Best Score:</label>
+          <label>Best Score</label>
           <p>{{ score }}</p>
         </div>
         <button class="submit">Save</button>
@@ -21,10 +21,15 @@
 import { ref } from '@vue/reactivity'
 export default {
   props: ['score'],
-  setup() {
+  emits: ['close'],
+  setup(props, context) {
     const name = ref('')
 
-    return { name }
+    function closeModal() {
+      context.emit('close')
+    }
+
+    return { name, closeModal }
   }
 }
 </script>
@@ -44,7 +49,7 @@ export default {
 
 .modalContent {
   padding: 4vw;
-  font-size: 3.5vw;
+  font-size: 3vw;
   background-color: rgb(43, 43, 43);
   border-radius: 10px;
 }
@@ -61,13 +66,14 @@ export default {
   margin: 0;
   font-size: 1.5em;
   display: block;
-  color: crimson;
+  color: rgb(238, 74, 106);
   font-style: bold;
   margin: auto;
 }
 
 .flexFormEl label {
   margin-right: 4vw;
+  letter-spacing: 1px;
 }
 
 .name {
@@ -76,12 +82,13 @@ export default {
   border-bottom: 2px solid rgb(255, 184, 184);
   font-size: 3.5vw;
   color: white;
-  width: 25vw;
+  width: 20vw;
+  text-align: center;
 }
 
-.name:focus{
-    outline: none;
-    background-color: rgb(51, 49, 49);;
+.name:focus {
+  outline: none;
+  background-color: rgb(63, 60, 60);
 }
 
 .submit {
@@ -91,5 +98,6 @@ export default {
   color: white;
   background-color: rgb(0, 146, 90);
   border: none;
+  cursor: pointer;
 }
 </style>

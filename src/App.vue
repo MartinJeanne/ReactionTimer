@@ -74,6 +74,7 @@ body {
   background-color: crimson;
   color: rgb(255, 255, 255);
   border: 2px solid white;
+  cursor: pointer;
 }
 
 .play:disabled {

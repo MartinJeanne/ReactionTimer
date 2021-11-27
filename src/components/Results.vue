@@ -1,5 +1,5 @@
 <template>
-  <div id="scores" v-if="currentScore">
+  <div id="scores">
     <p id="currentScore">
       Your score: <b>{{ currentScore }}ms</b>
     </p>
@@ -26,7 +26,7 @@
       </div>
     </div>
     <button @click="saveBestScore" class="save">Save your best score</button>
-    <SaveScore v-if="isSaving" :score="bestScore" />
+    <SaveScore v-if="isSaving" :score="bestScore" @close="isSaving = false"/>
   </div>
 </template>
 
@@ -112,9 +112,11 @@ ul {
 
 #scores {
   width: 40vw;
-  margin: 8vh auto;
+  max-height: 70vh;
+  overflow: hidden;
+  margin: 5vh auto auto auto;
   background-color: rgb(77, 82, 80);
-  padding: 0 0.8vw 1vw 0.8vw;
+  padding: 0 0.8vw 0.8vw 0.8vw;
   border-radius: 2%;
 }
 
@@ -154,14 +156,20 @@ ul {
   margin-top: 1vw;
 }
 
+#globalScore {
+  max-height: 26vh;
+  overflow: auto;
+}
+
 .save {
   display: block;
   padding: 10px;
-  margin: 3vh auto;
+  margin: 1.5vh auto;
   border-radius: 1vh;
   border: 2px solid rgb(241, 241, 241);
-  background-color: rgb(0, 172, 86);
+  background-color: rgba(0, 0, 0, 0);
   color: white;
   font-size: 1.5vw;
+  cursor: pointer;
 }
 </style>
