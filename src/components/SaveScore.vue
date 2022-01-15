@@ -1,7 +1,7 @@
 <template>
   <div class="modal" @click.self="closeModal">
     <div class="modalContent">
-      <form>
+      <form @submit.prevent="handleSubmit">
         <div class="flexFormEl">
           <label>Your name</label>
           <input v-model="name" class="name" type="text" />
@@ -19,6 +19,8 @@
 
 <script>
 import { ref } from '@vue/reactivity'
+import { projectFirestore } from '../firebase/config'
+
 export default {
   props: ['score'],
   emits: ['close'],
@@ -29,7 +31,18 @@ export default {
       context.emit('close')
     }
 
-    return { name, closeModal }
+    async function handleSubmit() {
+      console.log(props.score, name.value)
+      const record = {
+        name: name.value,
+        score: props.score
+      }
+
+      const res = await projectFirestore.collection('record').add(record)
+      context.emit('close')
+    }
+
+    return { name, closeModal, handleSubmit }
   }
 }
 </script>

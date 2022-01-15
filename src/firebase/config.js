@@ -2,13 +2,13 @@ import firebase from "firebase/app";
 import 'firebase/firestore'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyC9O66NoVZRNv37zdtNzETuwSL-DH5Cqdg",
-    authDomain: "reactiontimer-firebase.firebaseapp.com",
-    projectId: "reactiontimer-firebase",
-    storageBucket: "reactiontimer-firebase.appspot.com",
-    messagingSenderId: "748725425560",
-    appId: "1:748725425560:web:e8d4f0456127e0167387ed"
-}
+    apiKey: "AIzaSyDr2QEZJWu4Q7F4QELlowJw4xT-7VckOVM",
+    authDomain: "reaction-timer-5124d.firebaseapp.com",
+    projectId: "reaction-timer-5124d",
+    storageBucket: "reaction-timer-5124d.appspot.com",
+    messagingSenderId: "867268321260",
+    appId: "1:867268321260:web:8553d865198eb0e4f86ac9"
+  };
 
 // init firebase
 firebase.initializeApp(firebaseConfig);

@@ -19,8 +19,8 @@
       <div id="globalScore">
         <p>Global best scores:</p>
         <ul>
-          <li v-for="(r, index) in record" :key="r.id">
-            {{ index + 1 }}. {{ r.name }}: {{ r.time }}ms
+          <li v-for="(record, index) in records" :key="record.id">
+            {{ index + 1 }}. {{ record.name }}: {{ record.score }}ms
           </li>
         </ul>
       </div>
@@ -33,8 +33,7 @@
 <script>
 import { ref } from '@vue/reactivity'
 import { onMounted } from '@vue/runtime-core'
-import getRecord from '../composables/getRecord'
-import { projectFirestore } from '../firebase/config'
+import getRecords from '../composables/getRecords'
 import SaveScore from './SaveScore.vue'
 
 export default {
@@ -48,7 +47,7 @@ export default {
     const bestScore = ref(null)
     const isSaving = ref(false)
 
-    const { record, load } = getRecord()
+    const { records, load } = getRecords()
     load()
 
     function sortScore() {
@@ -90,7 +89,7 @@ export default {
       currentScore,
       currentRole,
       sortScore,
-      record,
+      records,
       saveBestScore,
       bestScore,
       isSaving
