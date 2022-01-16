@@ -32,7 +32,6 @@ export default {
     }
 
     async function handleSubmit() {
-      console.log(props.score, name.value)
       const record = {
         name: name.value,
         score: props.score

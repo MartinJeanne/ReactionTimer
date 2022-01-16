@@ -26,7 +26,7 @@
       </div>
     </div>
     <button @click="saveBestScore" class="save">Save your best score</button>
-    <SaveScore v-if="isSaving" :score="bestScore" @close="isSaving = false"/>
+    <SaveScore v-if="isSaving" :score="bestScore" @close="bestScoreSaved()"/>
   </div>
 </template>
 
@@ -59,14 +59,14 @@ export default {
       })
     }
 
-    async function saveBestScore() {
+    function saveBestScore() {
       isSaving.value = true
       bestScore.value = props.scores[0]
-      /*
-      const res = await projectFirestore
-        .collection('record')
-        .add({ name: 'Tinin', time: currentScore.value })
-        */
+    }
+
+    function bestScoreSaved() {
+      isSaving.value = false
+      load()
     }
 
     onMounted(() => {
@@ -92,7 +92,8 @@ export default {
       records,
       saveBestScore,
       bestScore,
-      isSaving
+      isSaving,
+      bestScoreSaved
     }
   }
 }
