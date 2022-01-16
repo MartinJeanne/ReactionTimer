@@ -32,12 +32,12 @@ export default {
     }
 
     async function handleSubmit() {
-      const record = {
+      const userRecord = {
         name: name.value,
         score: props.score
       }
 
-      const res = await projectFirestore.collection('record').add(record)
+      const res = await projectFirestore.collection('record').add(userRecord)
       context.emit('close')
     }
 

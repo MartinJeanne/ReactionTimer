@@ -6,8 +6,10 @@ function getRecords() {
 
     async function load() {
         try {
-            const res = await projectFirestore.collection('record').get()
-            records.value = res.docs.map(doc => {
+            const response = await projectFirestore.collection('record')
+            .orderBy('score')
+            .get()
+            records.value = response.docs.map(doc => {
                 return { ...doc.data(), id: doc.id }
             })
         } catch (err) {
